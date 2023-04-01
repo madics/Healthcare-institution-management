@@ -1,0 +1,65 @@
+﻿<Page x:Class="WpfApp1.View.Model.Doctor.DoctorRequestsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp1.View.Model.Doctor"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      mc:Ignorable="d" 
+      d:DesignHeight="839" d:DesignWidth="1700"
+      Title="DoctorRequestsPage">
+
+    <Grid>
+        <Label HorizontalContentAlignment="Center" Content="Requests" Margin="350,20,350,750" FontSize="50" BorderThickness="0,0,0,5" BorderBrush="{DynamicResource MedicalGreenBrush}" Foreground="{DynamicResource MedicalGreenBrush}" FontFamily="Trajan Pro 3" FontWeight="Bold"/>
+
+        <GroupBox Header="Create a Request" HorizontalAlignment="Left" Height="586" Margin="264,165,0,0" VerticalAlignment="Top" Width="530" BorderBrush="{DynamicResource MedicalGreenBrush}" Foreground="{DynamicResource MedicalGreenBrush}" FontSize="30" FontFamily="Trajan Pro 3 Bold">
+            <Grid>
+                <TextBox x:Name="TitleTB" HorizontalAlignment="Left" Height="32" Margin="38,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="440" FontSize="20" />
+                <TextBox x:Name="ContentTB" HorizontalAlignment="Left" Height="156" Margin="38,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="440" FontSize="20"/>
+                <Label Content="Start:" HorizontalAlignment="Left" Margin="38,38,0,0" VerticalAlignment="Top" Foreground="{DynamicResource WhiteBrush}" FontWeight="Bold" FontSize="20"/>
+                <Label Content="End:" Margin="290,38,159,0" VerticalAlignment="Top" Foreground="{DynamicResource WhiteBrush}" FontWeight="Bold" FontSize="20" RenderTransformOrigin="2.212,0.554"/>
+                <Label Content="Subject:" HorizontalAlignment="Left" Margin="38,119,0,0" VerticalAlignment="Top" Foreground="{DynamicResource WhiteBrush}" FontWeight="Bold" FontSize="20"/>
+                <Label Content="Description:" HorizontalAlignment="Left" Margin="38,193,0,0" VerticalAlignment="Top" Foreground="{DynamicResource WhiteBrush}" FontWeight="Bold" FontSize="20"/>
+                <Button x:Name="SaveBT" Style="{StaticResource DoctorYesButton }" Content="Send" HorizontalAlignment="Left" Margin="334,410,0,90" Width="144" Click="SaveBT_Click"/>
+                <Label Name="exceptionLabel" Visibility="Collapsed" Content="Selected dates are unavailable. Try different ones." HorizontalAlignment="Left" Margin="11,0,0,0" VerticalAlignment="Top" Foreground="{DynamicResource NoRedBrush}" FontSize="16" FontFamily="Trajan Pro 3 "/>
+
+                <xctk:DateTimePicker x:Name="BeginningDTP" Margin="38,72,292,439" FontSize="20"/>
+                <xctk:DateTimePicker x:Name="EndingDTP" Margin="290,72,40,439" FontSize="20"/>
+                <CheckBox x:Name="UrgentCBX" Content="Urgent?" HorizontalAlignment="Left" Margin="38,410,0,0" VerticalAlignment="Top" Foreground="{DynamicResource WhiteBrush}" FontSize="20"/>
+            </Grid>
+        </GroupBox>
+
+        <GroupBox Header="Request View" HorizontalAlignment="Left" Height="244" Margin="826,165,0,0" VerticalAlignment="Top" Width="596" BorderBrush="{DynamicResource MedicalGreenBrush}" Foreground="{DynamicResource MedicalGreenBrush}" FontSize="30" FontFamily="Trajan Pro 3 Bold">
+
+            <DataGrid x:Name="RequestViewGrid" Margin="10,26,10,22"
+                      AutoGenerateColumns="False" Style="{StaticResource DoctorDataGrid}" 
+                      ItemsSource="{Binding Requests}"  >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header=" Subject" Width="150"  Binding="{Binding Title}" HeaderStyle="{StaticResource DoctorDGHeader}" CellStyle="{StaticResource DoctorDGCell}"/>
+                    <DataGridTextColumn Header=" Start" Width="3*" Binding="{Binding Beginning}"  HeaderStyle="{StaticResource DoctorDGHeader}" CellStyle="{StaticResource DoctorDGCell}"/>
+                    <DataGridTextColumn Header=" End" Width="3*" Binding="{Binding Ending}"  HeaderStyle="{StaticResource DoctorDGHeader}" CellStyle="{StaticResource DoctorDGCell}"/>
+                    <DataGridTextColumn Header=" Status" Width="2*" Binding="{Binding Status}"   HeaderStyle="{StaticResource DoctorDGHeader}" CellStyle="{StaticResource DoctorDGCell}"/>
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </GroupBox>
+        <GroupBox Header="Declined Requests" HorizontalAlignment="Left" Height="337" Margin="826,414,0,0" VerticalAlignment="Top" Width="596" BorderBrush="{DynamicResource MedicalGreenBrush}" Foreground="{DynamicResource MedicalGreenBrush}" FontSize="30" FontFamily="Trajan Pro 3 Bold">
+            <Grid>
+                <Label Content="Comment:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Foreground="{DynamicResource MedicalGreenBrush}" FontWeight="Bold" FontSize="20" Height="32"/>
+                <TextBox x:Name="CommentTB" HorizontalAlignment="Left" Height="65" Margin="10,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="564" IsEnabled="False" FontSize="20" />
+
+                <DataGrid x:Name="DeclinedRequestsGrid" Margin="10,112,10,10"
+                AutoGenerateColumns="False" Style="{StaticResource DoctorDataGrid}" 
+                ItemsSource="{Binding DeclinedRequests}" SelectionChanged="DeclinedRequestsGrid_SelectionChanged"  >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header=" Subject" Width="150"  Binding="{Binding Title}" HeaderStyle="{StaticResource DoctorDGHeader}" CellStyle="{StaticResource DoctorDGCell}"/>
+                        <DataGridTextColumn Header=" Start" Width="3*" Binding="{Binding Beginning}"  HeaderStyle="{StaticResource DoctorDGHeader}" CellStyle="{StaticResource DoctorDGCell}"/>
+                        <DataGridTextColumn Header=" End" Width="3*" Binding="{Binding Ending}"  HeaderStyle="{StaticResource DoctorDGHeader}" CellStyle="{StaticResource DoctorDGCell}"/>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </GroupBox>
+
+    </Grid>
+</Page>

@@ -1,0 +1,39 @@
+﻿<Page x:Class="WpfApp1.View.Model.Patient.PatientNotesView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp1.View.Model"
+      xmlns:vm="clr-namespace:WpfApp1.ViewModel"
+      mc:Ignorable="d" 
+      d:DesignHeight="768" d:DesignWidth="1024"
+      Title="PatientNotesView">
+
+    <Page.DataContext>
+        <vm:NotesViewModel/>
+    </Page.DataContext>
+    
+    <Grid>
+        <Rectangle Width="850" Height="580" Stroke="{StaticResource LightBlueBrush}" StrokeThickness="3" Fill="{StaticResource DarkBlueBrush}"></Rectangle>
+        <Button Content="Add New Note" Style="{StaticResource AddAppointmentButton}" Command="{Binding OpenDialog}"/>
+        <DataGrid MaxWidth="785" Style="{StaticResource PatientDataGrid}" ItemsSource="{Binding Notes}" SelectedItem="{Binding Note}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Note" Width="575" Binding="{Binding Content}" CanUserSort="False" ElementStyle="{StaticResource ColumnElementStyle}" CellStyle="{StaticResource PatientDataGridCell}"/>
+                <DataGridTemplateColumn Header="Update" MinWidth="90">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Update" Style="{StaticResource PatientDataGridButton}" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.UpdateDialog}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Delete" MinWidth="90">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Delete" Style="{StaticResource PatientDataGridButton}" Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, Path=DataContext.Delete}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

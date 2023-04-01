@@ -1,0 +1,65 @@
+﻿<Page x:Class="WpfApp1.View.Model.Executive.ExecutiveMainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfApp1.View.Model"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="ExecutiveMainPage">
+    <Page.Resources>
+        <Storyboard x:Name="myStoryboard" x:Key="myStoryboard">
+            <DoubleAnimationUsingKeyFrames
+                       Storyboard.TargetName="ExecutivePagesFrame"
+                       Storyboard.TargetProperty="Opacity"
+                       Duration="0:0:1">
+                <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0" />
+                <LinearDoubleKeyFrame Value="1.0" KeyTime="0:0:1" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Height="100" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Name="DrugsButton" Width="254" Style="{StaticResource NavBarButton}" Click="DrugsButton_Click">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <Image Source="\Resources\Icons\medicine-free-icon-font.png" Width="50" Margin="0 20 0 30"></Image>
+                    <TextBlock Text="Drugs"></TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Name="RoomsButton" Width="254" Style="{StaticResource NavBarButton}" Click="RoomsButton_Click">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <Image Source="\Resources\Icons\cube-free-icon-font.png" Width="50" Margin="0 20 0 30"></Image>
+                    <TextBlock Text="Rooms"></TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Name="InventoryButton" Width="254" Style="{StaticResource NavBarButton}" Click="InventoryButton_Click">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <Image Source="\Resources\Icons\truck-loading-free-icon-font.png" Width="50" Margin="0 20 0 30"></Image>
+                    <TextBlock Text="Inventory"></TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Name="StatisticsButton" Width="254" Style="{StaticResource NavBarButton}" Click="StatisticsButton_Click">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <Image Source="\Resources\Icons\stats-free-icon-font.png" Width="50" Margin="0 20 0 30"></Image>
+                    <TextBlock Text="Statistics"></TextBlock>
+                </StackPanel>
+            </Button>
+            <Button Name="HelpButton" Width="254" Style="{StaticResource NavBarButton}" Click="HelpButton_Click">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <Image Source="\Resources\Icons\interrogation-free-icon-font.png" Width="50" Margin="0 20 0 30"></Image>
+                    <TextBlock Text="Help"></TextBlock>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <Frame x:Name="ExecutivePagesFrame" Grid.Row="2" NavigationUIVisibility="Hidden"></Frame>
+    </Grid>
+</Page>

@@ -1,0 +1,28 @@
+﻿<Window x:Class="WpfApp1.View.DoctorMenu"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.View"
+        mc:Ignorable="d"
+        Title="DoctorMenu" Height="1050" Width="1900"
+        WindowStartupLocation="CenterScreen" Background="{DynamicResource MedicalBlueBrush}"
+        WindowState="Maximized">
+    <Grid>
+
+        <StackPanel x:Name="MenuBarPanel" HorizontalAlignment="Left" Orientation="Horizontal" Height="143" VerticalAlignment="Top" Margin="100,0,0,0" >
+
+            <Image Source="../../SIMS-HCI/IN-Tim-9-SIMS-HCI/WpfApp1/Resources/Images/logo.png" Width="120" Height="120" Margin="0,0,10,0"/>
+            <Button Style="{StaticResource DoctorNavButton}" Width="180" Height="80" x:Name="ProfileBT" Content="Profile Page" Click="ProfileBT_Click" BorderBrush="{DynamicResource WhiteBrush}" />
+            <Button Style="{StaticResource DoctorNavButton}" Width="180" Height="80" x:Name="AppointmentsBT" Content="Appointments" Click="AppointmentsBT_Click" BorderBrush="{DynamicResource WhiteBrush}" />
+            <Button Style="{StaticResource DoctorNavButton}" Width="180" Height="80" x:Name="MedicalRecordsBT" Content="Medical Records" Click="MedicalRecordsBT_Click" BorderBrush="{DynamicResource WhiteBrush}"   />
+            <Button Style="{StaticResource DoctorNavButton}" Width="180" Height="80" x:Name="RequestsBT" Content="Requests" Click="RequestsBT_Click" BorderBrush="{DynamicResource WhiteBrush}" />
+            <Button Style="{StaticResource DoctorNavButton}" Width="180" Height="80" x:Name="NotificationsBT" Content="Notifications" Click="NotificationsBT_Click" BorderBrush="{DynamicResource WhiteBrush}" />
+            <Button Style="{StaticResource DoctorNavButton}" Width="180" Height="80" x:Name="DrugValidationBT" Content="Drug Validation" Click="DrugValidationBT_Click" BorderBrush="{DynamicResource WhiteBrush}"  />
+        </StackPanel>
+        <Button x:Name="HelpBT" Style="{StaticResource DoctorInfoButton}" Width="120" Content="Help" Margin="0,52,356,0" BorderThickness="3" Height="40" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+        <Button x:Name="LogOutBT" Style="{StaticResource DoctorNavButton}" Height="80"  Content="Log Out" Margin="0,32,100,0" VerticalAlignment="Top" Click="LogOutBT_Click" HorizontalAlignment="Right" Width="197" />
+        <Frame x:Name="DoctorDisplayFrame" NavigationUIVisibility="Hidden" Content="" Margin="100,148,100,0" Background="{DynamicResource GrayBrush}" Height="839" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>
